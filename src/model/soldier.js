@@ -13,8 +13,12 @@ Soldier.prototype.getSoldierWeaponName = function (){
   return this.weapon.weaponName;
 };
 
-Soldier.prototype.getSoldierWeaponAttack = function () {
-  return this.weapon.weaponAttack;
+Soldier.prototype.getSoldierAttack = function () {
+  if(this.weapon) {
+    return this.weapon.weaponAttack + this.getRoleAttack();
+  } else {
+    return this.getRoleAttack();
+  }
 };
 
 Soldier.prototype.getSoldierWeaponText = function () {

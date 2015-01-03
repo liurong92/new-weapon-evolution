@@ -12,7 +12,6 @@ describe('pk', function() {
         var player = new Soldier('张三', 20, role2);
 
         var PkText = require('../src/model/pktext');
-
         var result = PkText.getSimpleText(soldier, player);
 
         expect(result).toEqual('战士李四攻击了平民张三,张三受到了10点攻击，剩10点血。\n');
