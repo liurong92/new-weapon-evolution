@@ -126,7 +126,7 @@ describe('pktext', function() {
     });
 
 
-    it('should return weapon effect flame', function() {
+    it('should return weapon effect frozen stiff', function() {
       var Effects = require('../src/model/effects');
       var effects = new Effects('冻僵了', 3, 1);
 
@@ -143,5 +143,25 @@ describe('pktext', function() {
       var result = PkText.getSimpleText(soldier, player);
 
       expect(result).toEqual('战士李四用冰封之刃攻击了平民张三,张三冻僵了,张三受到了15点攻击，剩5点血。\n');
+    });
+
+
+    it('should return weapon effect dizziness', function() {
+      var Effects = require('../src/model/effects');
+      var effects = new Effects('晕倒了', 3, 1);
+
+      var Weapon = require('../src/model/weapon');
+      var weapon = new Weapon('瞌睡虫', 5, effects);
+
+      var Defense = require('../src/model/defense');
+      var defense = new Defense('藤甲', 1);
+
+      var soldier = new Soldier('李四', 20, role1, weapon, defense);
+      var player = new Soldier('张三', 20, role2);
+
+      var PkText = require('../src/model/pktext');
+      var result = PkText.getSimpleText(soldier, player);
+
+      expect(result).toEqual('战士李四用瞌睡虫攻击了平民张三,张三晕倒了,张三受到了15点攻击，剩5点血。\n');
     });
 });

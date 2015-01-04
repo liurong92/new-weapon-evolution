@@ -36,7 +36,8 @@ PkText.getEffectsText = function (attacker, random, defencer) {
     (attacker.getSoldierWeaponEfName() === '致命一击' ||
      attacker.getSoldierWeaponEfName() === '中毒了' ||
      attacker.getSoldierWeaponEfName() === '着火了' ||
-     attacker.getSoldierWeaponEfName() === '冻僵了')) {
+     attacker.getSoldierWeaponEfName() === '冻僵了' ||
+     attacker.getSoldierWeaponEfName() === '晕倒了')) {
     return attacker.getSoldierWeaponEffectName(defencer.name);
   }
    else {
