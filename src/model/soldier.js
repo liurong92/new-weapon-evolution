@@ -41,9 +41,17 @@ Soldier.prototype.getSoldierWeaponEffectTime = function () {
   }
 };
 
-Soldier.prototype.getSoldierWeaponEffectName = function () {
+Soldier.prototype.getSoldierWeaponEfName = function () {
   if (this.weapon) {
-    return this.weapon.getEffectName(this.name);
+    return this.weapon.getEfName();
+  } else {
+    return '';
+  }
+};
+
+Soldier.prototype.getSoldierWeaponEffectName = function (defencerName) {
+  if (this.weapon) {
+    return this.weapon.getEffectName(this.name, defencerName);
   } else {
     return '';
   }

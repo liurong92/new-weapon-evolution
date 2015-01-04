@@ -30,16 +30,28 @@ Weapon.prototype.getEffectTrigger = function () {
 };
 
 Weapon.prototype.getEffectTimes = function () {
-  if (this.effects) {
+  if (this.effects && this.getEfName() === '致命一击') {
     return this.effects.times;
   } else {
     return 1;
   }
 };
 
-Weapon.prototype.getEffectName = function (name) {
+Weapon.prototype.getEfName = function () {
   if (this.effects) {
+    return this.effects.effectsName;
+  } else {
+    return '';
+  }
+};
+
+Weapon.prototype.getEffectName = function (name, defencerName) {
+  if (this.effects && this.getEfName() === '致命一击') {
     return name + '发动了' + this.effects.effectsName + ',';
+
+  } else if (this.effects && this.getEfName() === '中毒了'){
+    return defencerName + this.effects.effectsName + ',';
+    
   } else {
     return '';
   }
