@@ -18,7 +18,6 @@ Soldier.prototype.getSoldierAttack = function () {
 };
 
 Soldier.prototype.getDefense = function () {
-  // console.log(player.defense.defenseAttack);
   if(this.defense) {
     return this.defense.defenseAttack;
   } else {
@@ -32,6 +31,31 @@ Soldier.prototype.getSoldierWeaponText = function () {
   } else {
     return '';
   }
+};
+
+Soldier.prototype.getSoldierWeaponEffectTime = function () {
+  if (this.weapon) {
+    return this.weapon.getEffectTimes();
+  } else {
+    return 1;
+  }
+};
+
+Soldier.prototype.getSoldierWeaponEffectName = function () {
+  if (this.weapon) {
+    return this.weapon.getEffectName(this.name);
+  } else {
+    return '';
+  }
+};
+
+Soldier.prototype.getSoldierEffectsTrigger = function () {
+  if (this.weapon) {
+    return this.weapon.getEffectTrigger();
+  } else {
+    return null;
+  }
+
 };
 
 module.exports = Soldier;
