@@ -9,15 +9,20 @@ function Soldier (name, hp, role, weapon, defense) {
 Soldier.prototype = Object.create(Player.prototype);
 Soldier.prototype.constructor = Soldier;
 
-Soldier.prototype.getSoldierWeaponName = function (){
-  return this.weapon.weaponName;
-};
-
 Soldier.prototype.getSoldierAttack = function () {
   if(this.weapon) {
     return this.weapon.weaponAttack + this.getRoleAttack();
   } else {
     return this.getRoleAttack();
+  }
+};
+
+Soldier.prototype.getDefense = function () {
+  // console.log(player.defense.defenseAttack);
+  if(this.defense) {
+    return this.defense.defenseAttack;
+  } else {
+    return 0;
   }
 };
 

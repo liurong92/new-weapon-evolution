@@ -32,4 +32,20 @@ describe('pktext', function() {
 
       expect(result).toEqual('战士李四用青龙刀攻击了平民张三,张三受到了15点攻击，剩5点血。\n');
     });
+
+    it('should return one person have a defense', function() {
+      var Weapon = require('../src/model/weapon');
+      var weapon = new Weapon('青龙刀', 5);
+
+      var Defense = require('../src/model/defense');
+      var defense = new Defense('藤甲',1);
+
+      var soldier = new Soldier('李四', 20, role1, weapon, defense);
+      var player = new Soldier('张三', 20, role2);
+
+      var PkText = require('../src/model/pktext');
+      var result = PkText.getSimpleText(player, soldier);
+
+      expect(result).toEqual('平民张三攻击了战士李四,李四受到了4点攻击，剩16点血。\n');
+    });
 });
