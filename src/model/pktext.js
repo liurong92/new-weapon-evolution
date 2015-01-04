@@ -33,14 +33,12 @@ PkText.getNewHp = function (attacker, defencer, random) {
 
 PkText.getEffectsText = function (attacker, random, defencer) {
   if(attacker.getSoldierEffectsTrigger() > random &&
-    attacker.getSoldierWeaponEfName() === '致命一击') {
-
+    (attacker.getSoldierWeaponEfName() === '致命一击' ||
+     attacker.getSoldierWeaponEfName() === '中毒了' ||
+     attacker.getSoldierWeaponEfName() === '着火了')) {
     return attacker.getSoldierWeaponEffectName(defencer.name);
-  } else if (attacker.getSoldierEffectsTrigger() > random &&
-    attacker.getSoldierWeaponEfName() === '中毒了') {
-
-    return attacker.getSoldierWeaponEffectName(defencer.name);
-  } else{
+  }
+   else {
     return '';
   }
 };
@@ -48,8 +46,8 @@ PkText.getEffectsText = function (attacker, random, defencer) {
 PkText.getEffectsAttack = function (attacker, random) {
   if(attacker.getSoldierEffectsTrigger() > random &&
     attacker.getSoldierWeaponEfName() === '致命一击') {
-      
     return attacker.getSoldierWeaponEffectTime();
+
   } else {
     return 1;
   }

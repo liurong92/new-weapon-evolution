@@ -10,43 +10,23 @@ Soldier.prototype = Object.create(Player.prototype);
 Soldier.prototype.constructor = Soldier;
 
 Soldier.prototype.getSoldierAttack = function () {
-  if(this.weapon) {
-    return this.weapon.weaponAttack + this.getRoleAttack();
-  } else {
-    return this.getRoleAttack();
-  }
+  return this.weapon ? (this.weapon.weaponAttack + this.getRoleAttack()) : this.getRoleAttack();
 };
 
 Soldier.prototype.getDefense = function () {
-  if(this.defense) {
-    return this.defense.defenseAttack;
-  } else {
-    return 0;
-  }
+  return this.defense ? this.defense.defenseAttack : 0;
 };
 
 Soldier.prototype.getSoldierWeaponText = function () {
-  if (this.weapon) {
-    return this.weapon.getWeaponText();
-  } else {
-    return '';
-  }
+  return this.weapon ? this.weapon.getWeaponText() : '';
 };
 
 Soldier.prototype.getSoldierWeaponEffectTime = function () {
-  if (this.weapon) {
-    return this.weapon.getEffectTimes();
-  } else {
-    return 1;
-  }
+  return this.weapon ? this.weapon.getEffectTimes() : 1;
 };
 
 Soldier.prototype.getSoldierWeaponEfName = function () {
-  if (this.weapon) {
-    return this.weapon.getEfName();
-  } else {
-    return '';
-  }
+  return this.weapon ? this.weapon.getEfName() : '';
 };
 
 Soldier.prototype.getSoldierWeaponEffectName = function (defencerName) {
@@ -58,12 +38,7 @@ Soldier.prototype.getSoldierWeaponEffectName = function (defencerName) {
 };
 
 Soldier.prototype.getSoldierEffectsTrigger = function () {
-  if (this.weapon) {
-    return this.weapon.getEffectTrigger();
-  } else {
-    return null;
-  }
-
+  return this.weapon ? this.weapon.getEffectTrigger() : null;
 };
 
 module.exports = Soldier;

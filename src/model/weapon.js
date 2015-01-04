@@ -1,7 +1,7 @@
 function Weapon (weaponName, weaponAttack, effects) {
   this.weaponName = weaponName || '';
   this.weaponAttack = weaponAttack || 0;
-  this.effects = effects || '';
+  this.effects = effects || [];
 }
 
 Weapon.prototype.getWeaponName = function () {
@@ -13,45 +13,29 @@ Weapon.prototype.getWeaponAttack = function () {
 };
 
 Weapon.prototype.getWeaponText = function () {
-  if (this.weaponName) {
-    return '用' + this.weaponName;
-  } else {
-    return '';
-  }
+  return this.weaponName ? '用' + this.weaponName : '';
 };
 
 Weapon.prototype.getEffectTrigger = function () {
-  if (this.effects) {
-    return this.effects.trigger;
-  } else {
-    return null;
-  }
-
+  return this.effects ? this.effects.trigger : null;
 };
 
 Weapon.prototype.getEffectTimes = function () {
-  if (this.effects && this.getEfName() === '致命一击') {
-    return this.effects.times;
-  } else {
-    return 1;
-  }
+  return (this.effects && this.getEfName() === '致命一击') ? this.effects.times : 1;
 };
 
 Weapon.prototype.getEfName = function () {
-  if (this.effects) {
-    return this.effects.effectsName;
-  } else {
-    return '';
-  }
+  return this.effects ? this.effects.effectsName : '';
 };
 
 Weapon.prototype.getEffectName = function (name, defencerName) {
   if (this.effects && this.getEfName() === '致命一击') {
     return name + '发动了' + this.effects.effectsName + ',';
 
-  } else if (this.effects && this.getEfName() === '中毒了'){
+  } else if (this.effects && this.getEfName() === '中毒了' ||
+             this.getEfName() === '着火了'){
     return defencerName + this.effects.effectsName + ',';
-    
+
   } else {
     return '';
   }
