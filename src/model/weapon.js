@@ -33,7 +33,8 @@ Weapon.prototype.getEffectName = function (name, defencerName) {
     return name + '发动了' + this.effects.effectsName + ',';
 
   } else if (this.effects && this.getEfName() === '中毒了' ||
-             this.getEfName() === '着火了'){
+             this.getEfName() === '着火了' ||
+             this.getEfName() === '冻僵了'){
     return defencerName + this.effects.effectsName + ',';
 
   } else {
