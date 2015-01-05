@@ -43,4 +43,5 @@ Weapon.prototype.getEffectName = function (name, defencerName) {
   }
 };
 
+
 module.exports = Weapon;

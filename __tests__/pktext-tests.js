@@ -51,7 +51,7 @@ describe('pktext', function() {
 
     it('should return weapon effect deadly strike', function() {
       var Effects = require('../src/model/effects');
-      var effects = new Effects('致命一击', 3, 1);
+      var effects = new Effects('致命一击', 3, 1, 1);
 
       var Weapon = require('../src/model/weapon');
       var weapon = new Weapon('青龙刀', 5, effects);
@@ -89,7 +89,7 @@ describe('pktext', function() {
 
     it('should return weapon effect poisoning', function() {
       var Effects = require('../src/model/effects');
-      var effects = new Effects('中毒了', 3, 1);
+      var effects = new Effects('中毒了', 3, 1, 5);
 
       var Weapon = require('../src/model/weapon');
       var weapon = new Weapon('青龙刀', 5, effects);
