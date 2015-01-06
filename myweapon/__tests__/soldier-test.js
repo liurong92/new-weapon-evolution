@@ -87,7 +87,7 @@ describe('Soldier', function () {
       expect(result).toEqual('普通人李四攻击了战士张三,张三受到了4攻击,剩16点血.\n');
     });
 
-    it('should return the one_player_is_poisoning', function () {
+    it('should return the one_player_is_no_poisoning', function () {
       var Role = require('../src/role');
       var roleOne = new Role('战士', 7);
       var roleTwo = new Role('普通人', 5);
@@ -108,9 +108,11 @@ describe('Soldier', function () {
       var Player = require('../src/player');
       var lisi = new Player(roleTwo, '李四', 20);
 
-      var result = zhangsan.getAttackText(lisi);
+      var resultOne = zhangsan.getAttackText(lisi);
+      var resultTwo = lisi.getAttackText(zhangsan);
 
-      expect(result).toEqual('战士张三用毒剑攻击了普通人李四,李四中毒了,李四受到了12攻击,剩8点血.\n');
+      expect(resultOne).toEqual('战士张三用毒剑攻击了普通人李四,李四中毒了,李四受到了12攻击,剩8点血.\n');
+      expect(resultTwo).toEqual('普通人李四攻击了战士张三,张三受到了4攻击,剩16点血.\n');
     });
   });
 });
