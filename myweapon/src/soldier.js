@@ -15,7 +15,7 @@ Soldier.prototype.getAttackText = function (defencer) {
   this.getNewHp(defencer);
 
   text = this.role.roleName + this.name + this.getWeaponName() + '攻击了' + defencer.role.roleName +
-        defencer.name + ',' + defencer.name + '受到了' + this.getAp(defencer) +
+        defencer.name + ',' + this.getEfText(defencer) + defencer.name + '受到了' + this.getAp(defencer) +
         '攻击,剩' + defencer.hp + '点血.\n';
 
   return text;
@@ -36,6 +36,10 @@ Soldier.prototype.getWeaponName = function () {
 
 Soldier.prototype.getDefenseAttack = function () {
   return this.defense ? this.defense.getDefenseAttack() : 0;
+};
+
+Soldier.prototype.getEfText = function (defencer) {
+  return this.weapon ? this.weapon.getEffectsText(defencer) : '';
 };
 
 module.exports = Soldier;
