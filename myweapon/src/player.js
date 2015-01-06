@@ -1,9 +1,9 @@
 var Role = require('./role');
 
 function Player (role, name, hp) {
-  this.role = role;
-  this.name = name;
-  this.hp = hp;
+  this.role = role || '';
+  this.name = name || '';
+  this.hp = hp || 0;
 }
 
 Player.prototype.getAttackText = function (defencer) {
