@@ -2,6 +2,7 @@ jest.dontMock('../src/role');
 jest.dontMock('../src/soldier');
 jest.dontMock('../src/player');
 jest.dontMock('../src/weapon');
+jest.dontMock('../src/defense');
 
 describe('Soldier', function () {
   describe('#getAttackText', function () {
@@ -60,6 +61,29 @@ describe('Soldier', function () {
 
       expect(resultOne).toEqual('战士张三用青龙刀攻击了普通人李四,李四受到了9攻击,剩11点血.\n');
       expect(resultTwo).toEqual('普通人李四攻击了战士张三,张三受到了5攻击,剩15点血.\n');
+    });
+
+    it('should return the one_soldier_have_defense', function () {
+      var Role = require('../src/role');
+      var roleOne = new Role('战士', 7);
+      var roleTwo = new Role('普通人', 5);
+
+      var Weapon = require('../src/weapon');
+      var weapon = new Weapon('青龙刀', 2);
+
+      var Defense = require('../src/defense');
+      var defense = new Defense('藤甲', 1);
+
+      var Soldier = require('../src/soldier');
+
+      var zhangsan = new Soldier(roleOne, '张三', 20, weapon, defense);
+
+      var Player = require('../src/player');
+      var lisi = new Player(roleTwo, '李四', 20);
+
+      var result = lisi.getAttackText(zhangsan);
+
+      expect(result).toEqual('普通人李四攻击了战士张三,张三受到了4攻击,剩16点血.\n');
     });
   });
 });
