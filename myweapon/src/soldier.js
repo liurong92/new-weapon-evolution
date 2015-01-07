@@ -1,45 +1,65 @@
 var Player = require('./player');
 
-function Soldier(role, name, hp, weapon, defense) {
-  Player.call(this, role, name, hp);
+function Soldier(role, name, hp, state, weapon, defense) {
+  Player.call(this, role, name, hp, state);
   this.weapon = weapon || '';
   this.defense = defense || '';
 }
 
 Soldier.prototype = Object.create(Player.prototype);
-
 Soldier.prototype.constructor = Soldier;
 
-Soldier.prototype.getAttackText = function (defencer) {
+Soldier.prototype.getAttackText = function (player) {
   var text = '';
-  this.getNewHp(defencer);
+  this.getNewHp(player);
+  text += this.getSimple(player);
+  return text;
+};
 
-  text = this.role.roleName + this.name + this.getWeaponName() + '攻击了' + defencer.role.roleName +
-        defencer.name + ',' + this.getEfText(defencer) + defencer.name + '受到了' + this.getAp(defencer) +
-        '攻击,剩' + defencer.hp + '点血.\n';
+Soldier.prototype.getSimple = function (player) {
+  var text = '';
+  text += this.role.roleName + this.name + this.getWeaponName() + '攻击了' +
+        player.role.roleName + player.name + ',' + player.name + '受到了' +
+        this.getAp(player) + '攻击,剩' + player.hp + '点血.\n';
 
   return text;
 };
 
-Soldier.prototype.getAp = function (defencer) {
-  return this.weapon ? (this.role.roleAttack + this.weapon.weaponAttack - defencer.getDefenseAttack()) :
-        (this.role.roleAttack - defencer.getDefenseAttack());
+Soldier.prototype.getAp = function (player) {
+  if(this.weapon) {
+    return this.role.roleAttack + this.weapon.weaponAttack -
+          player.getDefenseAttack();
+  } else {
+    return this.role.roleAttack - player.getDefenseAttack();
+  }
 };
 
-Soldier.prototype.getNewHp = function (defencer) {
-  defencer.hp -= this.getAp(defencer);
+Soldier.prototype.getNewHp = function (player) {
+  player.hp -= this.getAp(player);
 };
 
 Soldier.prototype.getWeaponName = function () {
-  return this.weapon ? this.weapon.getWeaponText() : '';
+  if (this.weapon) {
+    return this.weapon.getWeaponText  ();
+  } else {
+    return '';
+  }
 };
 
 Soldier.prototype.getDefenseAttack = function () {
-  return this.defense ? this.defense.getDefenseAttack() : 0;
+  if (this.defense) {
+    return this.defense.getDefenseAttack();
+  } else {
+    return 0;
+  }
 };
 
-Soldier.prototype.getEfText = function (defencer) {
-  return this.weapon ? this.weapon.getEffectsText(defencer) : '';
+Soldier.prototype.getEfText = function (player) {
+  if (this.weapon) {
+   return this.weapon.getEffectsText(player);
+  } else {
+    return '';
+  }
 };
 
 module.exports = Soldier;

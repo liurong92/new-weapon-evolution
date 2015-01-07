@@ -1,28 +1,29 @@
 var Role = require('./role');
-
-function Player (role, name, hp) {
+var _ = require('lodash');
+function Player (role, name, hp, state) {
   this.role = role || '';
   this.name = name || '';
   this.hp = hp || 0;
+  this.state = _.isUndefined(state) ? '正常' : state;
 }
 
-Player.prototype.getAttackText = function (defencer) {
+Player.prototype.getAttackText = function (soldier) {
   var text = '';
-  this.getNewHp(defencer);
+  this.getNewHp(soldier);
 
-  text = this.role.roleName + this.name + '攻击了' + defencer.role.roleName +
-        defencer.name + ',' + defencer.name + '受到了' + this.getAp(defencer) +
-        '攻击,剩' + defencer.hp + '点血.\n';
+  text += this.role.roleName + this.name + '攻击了' + soldier.role.roleName +
+        soldier.name + ',' + soldier.name + '受到了' + this.getAp(soldier) +
+        '攻击,剩' + soldier.hp + '点血.\n';
 
   return text;
 };
 
-Player.prototype.getAp = function (defencer) {
-  return this.role.roleAttack - defencer.getDefenseAttack();
+Player.prototype.getAp = function (soldier) {
+  return this.role.roleAttack - soldier.getDefenseAttack();
 };
 
-Player.prototype.getNewHp = function (defencer) {
-  defencer.hp -= this.getAp(defencer);
+Player.prototype.getNewHp = function (soldier) {
+  soldier.hp -= this.getAp(soldier);
 };
 
 Player.prototype.getDefenseAttack = function () {

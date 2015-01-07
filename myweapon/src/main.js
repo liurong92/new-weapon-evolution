@@ -12,7 +12,7 @@ function main () {
   var weapon = new Weapon('青龙刀' , 2);
   var defense = new Defense('藤甲', 1);
 
-  var zhangsan = new Soldier(roleOne, '张三', 50, weapon, defense);
+  var zhangsan = new Soldier(roleOne, '张三', 50, '', weapon, defense);
   var lisi = new Player(roleTwo, '李四', 50);
 
   var pk = new Pk();
