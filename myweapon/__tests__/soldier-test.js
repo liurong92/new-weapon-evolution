@@ -4,7 +4,7 @@ jest.dontMock('../src/player');
 jest.dontMock('../src/weapon');
 jest.dontMock('../src/defense');
 jest.dontMock('../src/effects');
-
+jest.dontMock('lodash');
 describe('Soldier', function () {
   describe('#getAttackText', function () {
     it('should return the attack', function () {

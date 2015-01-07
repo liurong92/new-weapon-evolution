@@ -1,3 +1,5 @@
+var State = require('./state');
+
 function Pk () {
 
 }
@@ -17,8 +19,10 @@ Pk.prototype.getTexts = function (attacker, defencer) {
       result += attacker.name + '输。';
       break;
     }
+
   }
   return result;
 };
+
 
 module.exports = Pk;

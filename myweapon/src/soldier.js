@@ -13,6 +13,7 @@ Soldier.prototype.getAttackText = function (player) {
   var text = '';
   this.getNewHp(player);
   if (this.getEffectIsUse()) {
+    player.state = this.weapon.getName();
     text += this.getEffectText(player);
   } else {
     text += this.getSimpleText(player);
