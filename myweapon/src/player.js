@@ -7,7 +7,7 @@ function Player (role, name, hp, state) {
   this.state = state ||'正常';
 }
 
-Player.prototype.getAttackText = function (soldier) {
+Player.prototype.attackText = function (soldier) {
   var text = '';
   this.getNewHp(soldier);
 
@@ -15,11 +15,14 @@ Player.prototype.getAttackText = function (soldier) {
     text += State.getStateText(soldier, this);
   }
 
-  text += this.role.roleName + this.name + '攻击了' + soldier.role.roleName +
+  text += this.getAttackText(soldier);
+  return text;
+};
+
+Player.prototype.getAttackText = function (soldier) {
+  return this.role.roleName + this.name + '攻击了' + soldier.role.roleName +
         soldier.name + ',' + soldier.name + '受到了' + this.getAp(soldier) +
         '攻击,剩' + soldier.hp + '点血.\n';
-
-  return text;
 };
 
 Player.prototype.getEffectIsUse = function () {

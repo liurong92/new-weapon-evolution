@@ -14,8 +14,6 @@ PosionEffects.getPosionFireAndPosoning = function (attacker, defencer) {
     result += PosionEffects.getFireAndPosoningText(attacker, defencer);
     this.round++;
   }
-
-
   return result;
 };
 

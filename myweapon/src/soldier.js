@@ -9,7 +9,7 @@ function Soldier(role, name, hp, state, weapon, defense) {
 Soldier.prototype = Object.create(Player.prototype);
 Soldier.prototype.constructor = Soldier;
 
-Soldier.prototype.getAttackText = function (player) {
+Soldier.prototype.attackText = function (player) {
   var text = '';
   this.getNewHp(player);
   if (this.getEffectIsUse()) {
@@ -32,7 +32,11 @@ Soldier.prototype.getSimpleText = function (player) {
 Soldier.prototype.getEffectText = function (player) {
   return this.role.roleName + this.name + this.getWeaponName() + '攻击了' + player.role.roleName +
         player.name + ',' + player.name + '受到了' + this.getAp(player)  + '攻击,'+
-        player.name + this.weapon.getName() +'了,' +'剩' + player.hp + '点血.\n';
+        this.getWhoEffect(player) +'剩' + player.hp + '点血.\n';
+};
+
+Soldier.prototype.getWhoEffect = function (player) {
+  return player.name + this.weapon.getName() +'了,';
 };
 
 Soldier.prototype.getEffectIsUse = function () {

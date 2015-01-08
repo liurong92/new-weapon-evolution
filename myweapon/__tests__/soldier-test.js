@@ -6,7 +6,7 @@ jest.dontMock('../src/defense');
 jest.dontMock('../src/effects');
 
 describe('Soldier', function () {
-  describe('#getAttackText', function () {
+  describe('#attackText', function () {
     it('should return the attack', function () {
       var Role = require('../src/role');
       var roleOne = new Role('战士', 7);
@@ -18,8 +18,8 @@ describe('Soldier', function () {
       var Player = require('../src/player');
       var lisi = new Player(roleTwo, '李四', 20);
 
-      var resultOne = zhangsan.getAttackText(lisi);
-      var resultTwo = lisi.getAttackText(zhangsan);
+      var resultOne = zhangsan.attackText(lisi);
+      var resultTwo = lisi.attackText(zhangsan);
 
       expect(resultOne).toEqual('战士张三攻击了普通人李四,李四受到了7攻击,剩13点血.\n');
       expect(resultTwo).toEqual('普通人李四攻击了战士张三,张三受到了5攻击,剩15点血.\n');
@@ -36,8 +36,8 @@ describe('Soldier', function () {
       var Player = require('../src/player');
       var lisi = new Soldier(roleTwo, '李四', 20);
 
-      var resultOne = zhangsan.getAttackText(lisi);
-      var resultTwo = lisi.getAttackText(zhangsan);
+      var resultOne = zhangsan.attackText(lisi);
+      var resultTwo = lisi.attackText(zhangsan);
 
       expect(resultOne).toEqual('战士张三攻击了战士李四,李四受到了7攻击,剩13点血.\n');
       expect(resultTwo).toEqual('战士李四攻击了战士张三,张三受到了5攻击,剩15点血.\n');
@@ -57,8 +57,8 @@ describe('Soldier', function () {
       var Player = require('../src/player');
       var lisi = new Player(roleTwo, '李四', 20);
 
-      var resultOne = zhangsan.getAttackText(lisi);
-      var resultTwo = lisi.getAttackText(zhangsan);
+      var resultOne = zhangsan.attackText(lisi);
+      var resultTwo = lisi.attackText(zhangsan);
 
       expect(resultOne).toEqual('战士张三用青龙刀攻击了普通人李四,李四受到了9攻击,剩11点血.\n');
       expect(resultTwo).toEqual('普通人李四攻击了战士张三,张三受到了5攻击,剩15点血.\n');
@@ -82,7 +82,7 @@ describe('Soldier', function () {
       var Player = require('../src/player');
       var lisi = new Player(roleTwo, '李四', 20);
 
-      var result = lisi.getAttackText(zhangsan);
+      var result = lisi.attackText(zhangsan);
 
       expect(result).toEqual('普通人李四攻击了战士张三,张三受到了4攻击,剩16点血.\n');
     });
@@ -108,7 +108,7 @@ describe('Soldier', function () {
       var Player = require('../src/player');
       var lisi = new Player(roleTwo, '李四', 20);
 
-      var resultOne = zhangsan.getAttackText(lisi);
+      var resultOne = zhangsan.attackText(lisi);
 
       expect(resultOne).toEqual('战士张三用毒剑攻击了普通人李四,李四受到了12攻击,李四中毒了,剩8点血.\n');
     });
