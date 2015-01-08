@@ -12,12 +12,12 @@ function main () {
 
   var defense = new Defense('藤甲', 1);
 
-  var effect = new Effects('中毒', 1, 2, 1, false);
+  var effect = new Effects('中毒', 1, 2, 0.1, false);
 
   var weapon = new Weapon('毒剑', 5, [effect]);
 
-  var zhangsan = new Soldier(roleOne, '张三', 50, '', weapon, defense);
-  var lisi = new Player(roleTwo, '李四', 50);
+  var zhangsan = new Soldier(roleOne, '张三', 70, '', weapon, defense);
+  var lisi = new Player(roleTwo, '李四', 95);
 
   var pk = new Pk();
   var result = pk.getTexts(lisi, zhangsan);

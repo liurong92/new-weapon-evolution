@@ -35,15 +35,26 @@ Weapon.prototype.getName = function () {
   return name;
 };
 
-Weapon.prototype.getName = function () {
-  var name = '';
+Weapon.prototype.getAttack = function () {
+  var attack = 0;
   var effects = this.effects;
   for(var i = 0; i < effects.length; i++) {
     if(this.getIsUse) {
-      name = effects[i].name;
+      attack = effects[i].effectAttack;
     }
   }
-  return name;
+  return attack;
+};
+
+Weapon.prototype.getTimes = function () {
+  var times = 0;
+  var effects = this.effects;
+  for(var i = 0; i < effects.length; i++) {
+    if(this.getIsUse) {
+      times = effects[i].times;
+    }
+  }
+  return times;
 };
 
 module.exports = Weapon;

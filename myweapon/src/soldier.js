@@ -30,11 +30,10 @@ Soldier.prototype.getSimpleText = function (player) {
 };
 
 Soldier.prototype.getEffectText = function (player) {
-  return this.role.roleName + this.name + this.getWeaponName() + '攻击了' +
-      player.role.roleName + player.name + ',' + player.name + this.weapon.getName() +'了,' +
-      player.name + '受到了' +
-      this.getAp(player) + '攻击,剩' + player.hp + '点血.\n';
-}
+  return this.role.roleName + this.name + this.getWeaponName() + '攻击了' + player.role.roleName +
+        player.name + ',' + player.name + '受到了' + this.getAp(player)  + '攻击,'+
+        player.name + this.weapon.getName() +'了,' +'剩' + player.hp + '点血.\n';
+};
 
 Soldier.prototype.getEffectIsUse = function () {
   if (this.weapon) {

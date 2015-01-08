@@ -1,5 +1,6 @@
 var Role = require('./role');
 var _ = require('lodash');
+var State = require('./state');
 function Player (role, name, hp, state) {
   this.role = role || '';
   this.name = name || '';
@@ -10,7 +11,7 @@ function Player (role, name, hp, state) {
 Player.prototype.getAttackText = function (soldier) {
   var text = '';
   this.getNewHp(soldier);
-
+  text += State.getStateText(soldier, this);
   text += this.role.roleName + this.name + '攻击了' + soldier.role.roleName +
         soldier.name + ',' + soldier.name + '受到了' + this.getAp(soldier) +
         '攻击,剩' + soldier.hp + '点血.\n';
