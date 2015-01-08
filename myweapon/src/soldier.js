@@ -41,7 +41,6 @@ Soldier.prototype.getEffectIsUse = function () {
   } else {
     return false;
   }
-
 };
 
 Soldier.prototype.getAp = function (player) {

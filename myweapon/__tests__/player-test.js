@@ -1,5 +1,6 @@
 jest.dontMock('../src/role');
 jest.dontMock('../src/player');
+jest.dontMock('lodash');
 
 describe('Player', function() {
   describe('#getAttack', function () {
@@ -9,8 +10,8 @@ describe('Player', function() {
       var roleTwo = new Role('普通人', 5);
 
       var Player = require('../src/player');
-      var zhangsan = new Player(roleOne, '张三', 20);
-      var lisi = new Player(roleTwo, '李四', 20);
+      var zhangsan = new Player(roleOne, '张三', 20, '');
+      var lisi = new Player(roleTwo, '李四', 20, '');
       var resultOne = lisi.getAttackText(zhangsan);
       var resultTwo = zhangsan.getAttackText(lisi);
 

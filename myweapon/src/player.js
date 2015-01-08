@@ -1,22 +1,33 @@
 var Role = require('./role');
-var _ = require('lodash');
 var State = require('./state');
 function Player (role, name, hp, state) {
   this.role = role || '';
   this.name = name || '';
   this.hp = hp || 0;
-  this.state = _.isUndefined(state) ? '正常' : state;
+  this.state = state ||'正常';
 }
 
 Player.prototype.getAttackText = function (soldier) {
   var text = '';
   this.getNewHp(soldier);
-  text += State.getStateText(soldier, this);
+
+  if(this.getEffectIsUse()) {
+    text += State.getStateText(soldier, this);
+  }
+
   text += this.role.roleName + this.name + '攻击了' + soldier.role.roleName +
         soldier.name + ',' + soldier.name + '受到了' + this.getAp(soldier) +
         '攻击,剩' + soldier.hp + '点血.\n';
 
   return text;
+};
+
+Player.prototype.getEffectIsUse = function () {
+  if (this.weapon) {
+    return this.weapon.getIsUse();
+  } else {
+    return false;
+  }
 };
 
 Player.prototype.getAp = function (soldier) {

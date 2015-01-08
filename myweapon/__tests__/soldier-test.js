@@ -4,7 +4,7 @@ jest.dontMock('../src/player');
 jest.dontMock('../src/weapon');
 jest.dontMock('../src/defense');
 jest.dontMock('../src/effects');
-jest.dontMock('lodash');
+
 describe('Soldier', function () {
   describe('#getAttackText', function () {
     it('should return the attack', function () {
@@ -110,7 +110,7 @@ describe('Soldier', function () {
 
       var resultOne = zhangsan.getAttackText(lisi);
 
-      expect(resultOne).toEqual('战士张三用毒剑攻击了普通人李四,李四中毒了,李四受到了12攻击,剩8点血.\n');
+      expect(resultOne).toEqual('战士张三用毒剑攻击了普通人李四,李四受到了12攻击,李四中毒了,剩8点血.\n');
     });
   });
 });

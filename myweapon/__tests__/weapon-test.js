@@ -1,6 +1,7 @@
 jest.dontMock('../src/weapon');
 jest.dontMock('../src/effects');
 jest.dontMock('../src/player');
+jest.dontMock('lodash');
 
 describe('Weapon', function() {
   describe('#getEffect', function () {
