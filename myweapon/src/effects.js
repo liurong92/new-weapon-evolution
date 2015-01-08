@@ -10,6 +10,7 @@ Effects.prototype.changeIsUse = function () {
   if(this.trigger > Math.random()) {
     this.isUse = true;
   }
-    return this.isUse;
+
+  return this.isUse;
 };
 module.exports = Effects;

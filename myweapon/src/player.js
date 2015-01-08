@@ -5,17 +5,23 @@ function Player (role, name, hp, state) {
   this.name = name || '';
   this.hp = hp || 0;
   this.state = state ||'正常';
+  this.times = 0;
 }
 
 Player.prototype.attackText = function (soldier) {
   var text = '';
   this.getNewHp(soldier);
-
-  if(this.getEffectIsUse()) {
+  if(this.state !== '正常' && this.times < soldier.weapon.getTimes()) {
     text += State.getStateText(soldier, this);
+    this.times++;
+  } else {
+    this.times = 0;
+  }
+  if (this.hp > 0) {
+    text += this.getAttackText(soldier);
   }
 
-  text += this.getAttackText(soldier);
+
   return text;
 };
 
@@ -23,14 +29,6 @@ Player.prototype.getAttackText = function (soldier) {
   return this.role.roleName + this.name + '攻击了' + soldier.role.roleName +
         soldier.name + ',' + soldier.name + '受到了' + this.getAp(soldier) +
         '攻击,剩' + soldier.hp + '点血.\n';
-};
-
-Player.prototype.getEffectIsUse = function () {
-  if (this.weapon) {
-    return this.weapon.getIsUse();
-  } else {
-    return false;
-  }
 };
 
 Player.prototype.getAp = function (soldier) {

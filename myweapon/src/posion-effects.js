@@ -1,19 +1,12 @@
 var Effects = require('./effects');
 
-function PosionEffects(name, effectAttack, times, trigger, isUse) {
-  Effects.call(this, name, effectAttack, times, trigger, isUse);
-  this.round = 0;
+function PosionEffects() {
+
 }
 
-PosionEffects.prototype = Object.create(Effects.prototype);
-PosionEffects.prototype.constructor = PosionEffects;
-
 PosionEffects.getPosionFireAndPosoning = function (attacker, defencer) {
-  result = '';
-  if (attacker.weapon.getTimes()) {
-    result += PosionEffects.getFireAndPosoningText(attacker, defencer);
-    this.round++;
-  }
+  var result = '';
+  result += PosionEffects.getFireAndPosoningText(attacker, defencer);
   return result;
 };
 

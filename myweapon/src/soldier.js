@@ -4,6 +4,7 @@ function Soldier(role, name, hp, state, weapon, defense) {
   Player.call(this, role, name, hp, state);
   this.weapon = weapon || '';
   this.defense = defense || '';
+  this.time = 0;
 }
 
 Soldier.prototype = Object.create(Player.prototype);
@@ -12,11 +13,16 @@ Soldier.prototype.constructor = Soldier;
 Soldier.prototype.attackText = function (player) {
   var text = '';
   this.getNewHp(player);
-  if (this.getEffectIsUse()) {
+
+  if (this.getEffectIsUse() && this.time < this.getWeaponTimes()) {
     player.state = this.weapon.getName();
     text += this.getEffectText(player);
+    this.time++;
   } else {
-    text += this.getSimpleText(player);
+    this.time = 0;
+    if (player.hp > 0) {
+      text += this.getSimpleText(player);
+    }
   }
 
   return text;
@@ -65,6 +71,14 @@ Soldier.prototype.getWeaponName = function () {
     return this.weapon.getWeaponText();
   } else {
     return '';
+  }
+};
+
+Soldier.prototype.getWeaponTimes = function () {
+  if (this.weapon) {
+    return this.weapon.getTimes();
+  } else {
+    return 0;
   }
 };
 

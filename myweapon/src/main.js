@@ -14,8 +14,8 @@ function main () {
 
   var weapon = new Weapon('毒剑', 5, [new Effects('中毒', 1, 2, 0.3, false)]);
 
-  var zhangsan = new Soldier(roleOne, '张三', 70, '', weapon, defense);
-  var lisi = new Player(roleTwo, '李四', 95);
+  var zhangsan = new Soldier(roleOne, '张三', 90, '', weapon, defense);
+  var lisi = new Player(roleTwo, '李四', 100);
 
   var pk = new Pk();
   var result = pk.getTexts(lisi, zhangsan);
